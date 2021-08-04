@@ -8,13 +8,13 @@ import (
 
 type LogError struct {
 	_error       error
-	_err_code    string
+	_err_code    int
 	_err_msg     []string
 	_stack_track *raven.Stacktrace
 	_request     *http.Request
 }
 
-func NewLogError(err error, code, msg string) *LogError {
+func NewLogError(err error, code int, msg string) *LogError {
 	return &LogError{
 		_error:       err,
 		_err_code:    code,
@@ -41,7 +41,7 @@ func (this *LogError) Error() error {
 	return this._error
 }
 
-func (this *LogError) ErrCode() string {
+func (this *LogError) ErrCode() int {
 	return this._err_code
 }
 
